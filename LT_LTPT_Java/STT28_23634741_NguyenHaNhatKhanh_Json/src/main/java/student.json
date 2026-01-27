@@ -1,0 +1,15 @@
+{
+  "id": 1,
+  "firstName": "Nguyen",
+  "lastName": "Khanh",
+  "isActive": true,
+  "phones": [
+    "0901234567",
+    "0912345678"
+  ],
+  "dob": {
+    "year": 2003,
+    "month": 10,
+    "day": 15
+  }
+}
