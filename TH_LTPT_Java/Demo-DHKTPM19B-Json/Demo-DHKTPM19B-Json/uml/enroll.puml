@@ -1,0 +1,206 @@
+@startuml
+    title
+        Class Diagram
+    end title
+    class Student {
+        - id : Long
+        - firstName : String
+        - lastName : String
+        - dob: LocalDate
+        - isActive: boolean
+        - phones : List<String>
+        + Student()
+    }
+
+    class Course {
+        - id: String
+        - name: String
+        - credits: int
+        + Course()
+    }
+
+    class Enrollment {
+        - grade: float
+        + Enrollment()
+    }
+
+    Student "1" -- "*" Enrollment
+    Course  "1" -- "*" Enrollment
+
+@enduml
+
+@startuml
+    title
+        Class Diagram
+    end title
+    class Student {
+        - id : Long
+        - firstName : String
+        - lastName : String
+        - dob: LocalDate
+        - isActive: boolean
+        - phones : List<String>
+        + Student()
+    }
+
+    class Course {
+        - id: String
+        - name: String
+        - credits: int
+        + Course()
+    }
+
+    class Enrollment {
+        - grade: float
+    }
+
+    Student "1" <-- "*" Enrollment
+    Course  "1" <-- "*" Enrollment
+
+@enduml
+
+
+@startuml
+    title
+        Class Diagram
+    end title
+    class Student {
+        - id : Long
+        - firstName : String
+        - lastName : String
+        - dob: LocalDate
+        - isActive: boolean
+        - phones : List<String>
+        + Student()
+    }
+
+    class Course {
+        - id: String
+        - name: String
+        - credits: int
+        + Course()
+    }
+
+    class Enrollment {
+        - grade: float
+    }
+
+    Student "1" --> "0..*" Enrollment
+    Course  "1" <-- "0..*" Enrollment
+
+@enduml
+
+@startuml
+    title
+        Object Diagram
+    end title
+
+    object Student_1{
+        id = 101
+        firstName = "John"
+        lastName = "Doe"
+        age = 20
+        isActive = true
+        phones = ["0903 444 555", "0914 333 222"]
+    }
+
+    object Course_1  {
+        id = "CS101"
+        name = "Introduction to Computer Science"
+        credits = 3
+    }
+
+    object Course_2  {
+        id = "SE201"
+        name = "Software Testing"
+        credits = 3
+    }
+
+    object Enrollment_1 {
+        grade = 95.0
+    }
+
+    object Enrollment_2 {
+            grade = 85.0
+        }
+
+    Student_1 --> Enrollment_1
+    Enrollment_1 --> Course_1
+
+    Student_1 --> Enrollment_2
+    Enrollment_2 --> Course_2
+
+@enduml
+
+@startjson
+{
+    "id": 101,
+    "firstName": "John",
+    "lastName": "Doe",
+    "dob": {
+        "year": 2003,
+        "month": 5,
+        "day": 15
+    },
+    "isActive": true,
+    "phones": ["0903 444 555", "0914 333 222"],
+    "enrollments": [
+        {
+            "course": {
+                "id": "CS101",
+                "name": "Introduction to Computer Science",
+                "credits": 3
+            },
+            "grade": 95.0
+        },
+        {
+            "course": {
+                "id": "SE201",
+                "name": "Software Testing",
+                "credits": 3
+            },
+            "grade": 85.0
+        }
+    ]
+}
+@endjson
+
+@startjson
+[{
+  "id": "CS101",
+  "name": "Introduction to Computer Science",
+  "credits": 3
+},
+  {
+    "id": "SE201",
+    "name": "Software Testing",
+    "credits": 3
+  }
+]
+@endjson
+
+@startjson
+{
+  "student": {
+    "id": 101,
+    "firstName": "John",
+    "lastName": "Doe",
+    "dob": {
+      "year": 2003,
+      "month": 5,
+      "day": 15
+    },
+    "isActive": true,
+    "phones": [
+      "0903 444 555",
+      "0914 333 222"
+    ]
+  },
+  "course": {
+    "id": "SE201",
+    "name": "Software Testing",
+    "credits": 3
+  },
+  "grade": 95.0
+}
+@endjson

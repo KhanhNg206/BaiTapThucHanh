@@ -1,0 +1,11 @@
+[{
+  "id": "CS101",
+  "name": "Introduction to Computer Science",
+  "credits": 3
+},
+  {
+    "id": "SE201",
+    "name": "Software Testing",
+    "credits": 3
+  }
+]

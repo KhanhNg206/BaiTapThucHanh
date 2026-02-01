@@ -1,0 +1,154 @@
+[
+  {
+    "quiz_id": "quiz-001",
+    "name": "Java Basics Quiz",
+    "score": 100,
+    "questions": [
+      {
+        "question_id": "Q001",
+        "text": "What is the output of System.out.println(2 + \"2\") in Java?",
+        "options": ["4", "22", "Error", "None of the above"],
+        "correct_answer": "22"
+      },
+      {
+        "question_id": "Q002",
+        "text": "Which keyword is used to define a constant variable in Java?",
+        "options": ["const", "static", "final", "var"],
+        "correct_answer": "final"
+      },
+      {
+        "question_id": "Q012",
+        "text": "What is the default value of an instance variable of type int?",
+        "options": ["null", "0", "undefined", "1"],
+        "correct_answer": "0"
+      }
+    ],
+    "category": { "category_id": "C001", "name": "Java Programming" }
+  },
+  {
+    "quiz_id": "quiz-002",
+    "name": "Python Fundamentals",
+    "score": 100,
+    "questions": [
+      {
+        "question_id": "Q003",
+        "text": "Which keyword is used to define a function in Python?",
+        "options": ["func", "def", "define", "lambda"],
+        "correct_answer": "def"
+      },
+      {
+        "question_id": "Q004",
+        "text": "What data type is the result of: type(3/2) in Python 3?",
+        "options": ["int", "float", "double", "complex"],
+        "correct_answer": "float"
+      }
+    ],
+    "category": { "category_id": "C002", "name": "Python Programming" }
+  },
+  {
+    "quiz_id": "quiz-003",
+    "name": "Data Structures Quiz",
+    "score": 100,
+    "questions": [
+      {
+        "question_id": "Q005",
+        "text": "Which data structure uses LIFO?",
+        "options": ["Queue", "Stack", "Linked List", "Tree"],
+        "correct_answer": "Stack"
+      },
+      {
+        "question_id": "Q006",
+        "text": "Which sorting algorithm has the worst case complexity of O(n^2)?",
+        "options": ["Quick Sort", "Merge Sort", "Bubble Sort", "Heap Sort"],
+        "correct_answer": "Bubble Sort"
+      }
+    ],
+    "category": { "category_id": "C003", "name": "Data Structures" }
+  },
+  {
+    "quiz_id": "quiz-004",
+    "name": "Networking Quiz",
+    "score": 100,
+    "questions": [
+      {
+        "question_id": "Q007",
+        "text": "Which protocol is used for secure communication over the internet?",
+        "options": ["HTTP", "FTP", "SSL/TLS", "UDP"],
+        "correct_answer": "SSL/TLS"
+      },
+      {
+        "question_id": "Q008",
+        "text": "What is the default port number for HTTP?",
+        "options": ["21", "53", "80", "443"],
+        "correct_answer": "80"
+      }
+    ],
+    "category": { "category_id": "C004", "name": "Networking" }
+  },
+  {
+    "quiz_id": "quiz-005",
+    "name": "Operating Systems Quiz",
+    "score": 100,
+    "questions": [
+      {
+        "question_id": "Q009",
+        "text": "Which of the following is an example of a real-time operating system?",
+        "options": ["Windows", "Linux", "RTOS", "MacOS"],
+        "correct_answer": "RTOS"
+      },
+      {
+        "question_id": "Q010",
+        "text": "What is the main function of the kernel in an OS?",
+        "options": ["User Interface", "Memory Management", "File System", "Application Execution"],
+        "correct_answer": "Memory Management"
+      }
+    ],
+    "category": { "category_id": "C005", "name": "Operating Systems" }
+  },
+  {
+    "quiz_id": "quiz-006",
+    "name": "Advanced Java",
+    "score": 150,
+    "questions": [
+      {
+        "question_id": "Q011",
+        "text": "Which feature of Java allows multiple methods with the same name but different parameters?",
+        "options": ["Inheritance", "Polymorphism", "Overloading", "Overriding"],
+        "correct_answer": "Overloading"
+      },
+      {
+        "question_id": "Q012",
+        "text": "What is the default value of an instance variable of type int?",
+        "options": ["null", "0", "undefined", "1"],
+        "correct_answer": "0"
+      },
+      {
+        "question_id": "Q001",
+        "text": "What is the output of System.out.println(2 + \"2\") in Java?",
+        "options": ["4", "22", "Error", "None of the above"],
+        "correct_answer": "22"
+      }
+    ],
+    "category": { "category_id": "C001", "name": "Java Programming" }
+  },
+  {
+    "quiz_id": "quiz-007",
+    "name": "Cybersecurity Basics",
+    "score": 100,
+    "questions": [
+      {
+        "question_id": "Q013",
+        "text": "What type of attack involves intercepting communication between two parties?",
+        "options": ["SQL Injection", "Man-in-the-Middle", "DDoS", "Phishing"],
+        "correct_answer": "Man-in-the-Middle"
+      },
+      {
+        "question_id": "Q014",
+        "text": "Which of the following is a strong password?",
+        "options": ["password123", "admin", "P@ssw0rd!", "123456"],
+        "correct_answer": "P@ssw0rd!"
+      }
+    ],
+    "category": { "category_id": "C006", "name": "Cybersecurity" }
+  }
+]

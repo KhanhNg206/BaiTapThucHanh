@@ -1,0 +1,15 @@
+{
+    "id": 300,
+    "phones": [
+        "0903 444 555",
+        "0914 555 666"
+    ],
+    "firstName": "John",
+    "lastName": "Doe",
+    "isActive": false,
+    "dob": {
+        "year": 1989,
+        "month": 3,
+        "day": 2
+    }
+}

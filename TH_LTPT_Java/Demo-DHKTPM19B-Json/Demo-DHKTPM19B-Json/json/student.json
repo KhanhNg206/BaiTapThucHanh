@@ -1,0 +1,30 @@
+{
+  "id": 101,
+  "firstName": "John",
+  "lastName": "Doe",
+  "dob": {
+    "year": 2003,
+    "month": 5,
+    "day": 15
+  },
+    "isActive": true,
+  "phones": ["0903 444 555", "0914 333 222"],
+  "enrollments": [
+    {
+      "course": {
+        "id": "CS101",
+        "name": "Introduction to Computer Science",
+        "credits": 3
+      },
+      "grade": 95.0
+    },
+    {
+      "course": {
+        "id": "SE201",
+        "name": "Software Testing",
+        "credits": 3
+      },
+      "grade": 85.0
+    }
+  ]
+}
