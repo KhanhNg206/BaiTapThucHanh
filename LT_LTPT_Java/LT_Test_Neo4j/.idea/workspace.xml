@@ -4,27 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e38ec218-b865-4d39-b60c-e7a293fe35a8" name="Changes" comment="" />
+    <list default="true" id="3ca37c0e-9d7a-4c53-84ad-0b149a5aeff8" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
-  </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "KhanhNg206"
-  }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/KhanhNg206/BaiTapThucHanh.git",
-    "accountId": "4ab3b9a8-8c6e-4b62-a5bd-d00200ffc6f2"
-  }
-}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -33,7 +18,7 @@
     </option>
   </component>
   <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
+  "associatedIndex": 8
 }]]></component>
   <component name="ProjectId" id="398Xmrr2PDNgPjJEYbAsLMszpZW" />
   <component name="ProjectViewState">
@@ -44,27 +29,24 @@
   "keyToString": {
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "D:/USBDaMat/LapTrinhPhanTanVoiCongNgheJava/LT_Test_Neo4j",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RunManager">
-    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
-      <setting name="path" value="" />
-      <setting name="vmparams" value="" />
-      <setting name="params" value="" />
-      <setting name="workDir" value="file://$PROJECT_DIR$" />
-      <setting name="debug" value="false" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\USBDaMat\LapTrinhPhanTanVoiCongNgheJava\LT_Test_Neo4j\src\main\Cypher" />
+    </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -76,12 +58,12 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="e38ec218-b865-4d39-b60c-e7a293fe35a8" name="Changes" comment="" />
-      <created>1770078839598</created>
+      <changelist id="3ca37c0e-9d7a-4c53-84ad-0b149a5aeff8" name="Changes" comment="" />
+      <created>1770079743296</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1770078839598</updated>
-      <workItem from="1770078841967" duration="894000" />
+      <updated>1770079743296</updated>
+      <workItem from="1770079744658" duration="5352000" />
     </task>
     <servers />
   </component>

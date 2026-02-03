@@ -6,7 +6,7 @@
         <option name="dataSources">
           <list>
             <DataSourceV1>
-              <option name="uuid" value="5be03678-1173-4899-8627-2c1d60c8eb09" />
+              <option name="uuid" value="b433a579-9051-4291-abcc-7d5d241bfa22" />
               <option name="name" value="test" />
               <option name="dataSourceType" value="NEO4J_BOLT" />
               <option name="configuration">
