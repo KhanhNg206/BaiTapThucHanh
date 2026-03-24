@@ -1,0 +1,28 @@
+[
+  {
+    "quiz_id": "quiz-001",
+    "name": "Java Basics Quiz",
+    "score": 100,
+    "questions": [
+      {
+        "question_id": "Q001",
+        "text": "What is the output of System.out.println(2 + \"2\") in Java?",
+        "options": ["4", "22", "Error", "None of the above"],
+        "correct_answer": "22"
+      },
+      {
+        "question_id": "Q002",
+        "text": "Which keyword is used to define a constant variable in Java?",
+        "options": ["const", "static", "final", "var"],
+        "correct_answer": "final"
+      },
+      {
+        "question_id": "Q012",
+        "text": "What is the default value of an instance variable of type int?",
+        "options": ["null", "0", "undefined", "1"],
+        "correct_answer": "0"
+      }
+    ],
+    "category": { "category_id": "C001", "name": "Java Programming" }
+  }
+  ]
