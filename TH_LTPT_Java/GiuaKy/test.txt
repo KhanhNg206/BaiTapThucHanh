@@ -1,0 +1,229 @@
+create CONSTRAINT supplier_id IF NOT EXISTS
+FOR (s : Supplier) REQUIRE s.id IS UNIQUE
+
+match (s : Supplier) , (p : Product)
+where s.supplier_id = p.supplier_id
+MERGE (s) -[:SUPPLIES]->(p)
+
+CREATE RANGE INDEX supplier_index_companyName
+for(s : Supplier)
+ON (s.company_name)
+
+public class Neo4jConnection implements AutoCloseable{
+    private final Driver driver;
+    private final String dbName;
+
+    public Neo4jConnection(String user,String password,String url, String dbName) {
+        this.driver = GraphDatabase.driver(url, AuthTokens.basic(user,password));
+        this.dbName = dbName;
+    }
+
+    public Session OpenSession(){
+        return driver.session(SessionConfig.forDatabase(dbName));
+    }
+
+    @Override
+    public void close() throws Exception {
+        driver.close();
+    }
+}
+
+public class JacksonDataMapper implements GenericDataMapper {
+    private ObjectMapper objectMapper;
+
+    public JacksonDataMapper( ) {
+       objectMapper = new ObjectMapper();
+    }
+
+    @Override
+    public <T> T toObject(Map<String, Object> data, Class<T> clazz) {
+        if(data == null){
+            return null;
+        }
+        return objectMapper.convertValue(data,clazz);
+    }
+
+    @Override
+    public Map<String, Object> toMap(Object object) {
+        if(object == null){
+            return null;
+        }
+        return objectMapper.convertValue(object,Map.class);
+    }
+}
+
+
+public class SupplierRepoImpl implements SupplierRepository {
+    private Neo4jConnection connection;
+    private GenericDataMapper mapper;
+
+    public SupplierRepoImpl(Neo4jConnection connection, GenericDataMapper mapper) {
+        this.connection = connection;
+        this.mapper = mapper;
+    }
+
+    @Override
+    public double calculateTotalOrder(String orderID) {
+        String cypher = """
+                MATCH (o : Order {order_id : $orderId}) -[od:ORDERS]-> (p : Product)
+                RETURN sum(od.quantity * od.unit_price * (1 -od.discount)) as total
+                """;
+        var param = Values.parameters("orderId",orderID);
+        try(Session session = connection.OpenSession()){
+            return session.executeRead(tx -> {
+                Record record =  tx.run(cypher,param).single();
+                if(record.get("total").isNull()){
+                    return 0.0;
+                }return record.get("total").asDouble();
+            });
+        }
+    }
+
+    @Override
+    public boolean updateSupplier(Supplier supplier) {
+        String cypher = """
+                MATCH (s : Supplier)
+                where s.supplier_id = $id
+                set s.company_name = $comName,
+                 s.contact_name = $contactName,
+                s.country = $country
+                return count(s) as update
+                """;
+        var params = Values.parameters("id",supplier.getId(),
+                "comName",supplier.getCompanyName(),"contactName",supplier.getContactName(),
+        "country",supplier.getCountry());
+
+        try(Session session = connection.OpenSession()){
+            return session.executeWrite(tx ->
+                   tx.run(cypher,params).single().get("update").asInt() > 0);
+        }
+    }
+
+    @Override
+    public List<Product> listproductsBySupplier(String companyName, int page, int size) {
+        String cypher = """
+                MATCH (s : Supplier) -[:SUPPLIES]-> (p : Product)
+                where s.company_name = $comName
+                ORDER BY p.product_name
+                SKIP $skip LIMIT $size
+                RETURN p
+                """;
+        int skip = (1-page) * size;
+        var params = Values.parameters("comName",companyName,
+        "skip",skip,"size",size);
+
+        try(Session session = connection.OpenSession()){
+            return session.executeRead(tx -> {
+                Result result = tx.run(cypher,params);
+                return result.list(record -> {
+                    return mapper.toObject(record.get("p").asNode().asMap(),Product.class);
+                });
+            });
+        }
+    }
+
+    @Override
+    public boolean createProduct(ProductDTO productDTO) {
+        String cypher = """
+                create (p : Product {
+                product_id : $id,
+                product_name : $pname,
+                unit : $unit,
+                unit_price : $uprice,
+                units_in_stock : $uis,
+                supplier_id : $supId
+                })
+                return count(p) as create
+                """;
+        var param = Values.parameters("id",productDTO.getId(),
+        "pname",productDTO.getProductName(),"unit",productDTO.getUnit(),
+                "uprice",productDTO.getUnitPrice(),"uis",productDTO.getUnitInStock(),
+                "supId",productDTO.getSupplierID()
+        );
+        try(Session session = connection.OpenSession()){
+            return session.executeWrite(tx ->
+                    tx.run(cypher,param).single().get("create").asInt() > 0);
+        }
+    }
+
+    @Override
+    public Map<String, Integer> getNumberOfProductBySupplier() {
+        String cypher = """
+                MATCH (s : Supplier)-[:SUPPLIES]->(p : Product)
+                return s.company_name as CompanyyName , count(p) as totalProduct
+                ORDER BY CompanyyName ASC
+                """;
+        try(Session session = connection.OpenSession()){
+            return session.executeRead(tx -> {
+               Result result = tx.run(cypher);
+               Map<String,Integer> map = new LinkedHashMap<>();
+               while (result.hasNext()){
+                   Record record = result.next();
+                   String name = record.get("CompanyyName").asString();
+                   int total = record.get("totalProduct").asInt();
+                   map.put(name,total);
+               }
+               return map;
+            });
+        }
+    }
+
+
+@Override
+public boolean updateRoleOfInvolvement(String empId, String prjId, Role newRole) {
+    String cypher = """
+        MATCH (e:Employee {id: $empId})-[r:INVOLVE_IN]->(p:Project {id: $prjId})
+        WHERE p.endDate > date()   // dự án chưa kết thúc
+        SET r.role = $role
+        RETURN COUNT(r) AS updatedCount
+    """;
+    var params = Values.parameters(
+            "empId", empId,
+            "prjId", prjId,
+            "role", newRole.toString()
+    );
+    try (Session session = connection.getDriver().session()) {
+        Result result = session.run(cypher, params);
+
+        if (result.hasNext()) {
+            int count = result.next().get("updatedCount").asInt();
+            return count > 0;
+        }
+    }
+    return false;
+}
+
+@Override
+public Map<Employee, Double> getTotalIncomeOfEmployee() {
+    String cypher = """
+        MATCH (e:Employee)-[r:INVOLVE_IN]->(p:Project)
+        WITH e, SUM(r.hours * 200000 * e.salaryCoefficient) AS totalIncome
+        RETURN e, totalIncome
+        ORDER BY e.id
+    """;
+
+    Map<Employee, Double> resultMap = new LinkedHashMap<>();
+
+    try (Session session = connection.getDriver().session()) {
+        Result result = session.run(cypher);
+
+        while (result.hasNext()) {
+            Record record = result.next();
+
+            // map node -> Employee object
+            Node eNode = record.get("e").asNode();
+            Employee emp = Employee.builder()
+                    .id(eNode.get("id").asString())
+                    .firstName(eNode.get("firstName").asString())
+                    .lastName(eNode.get("lastName").asString())
+                    .salaryCoefficient((float) eNode.get("salaryCoefficient").asDouble())
+                    .build();
+
+            double totalIncome = record.get("totalIncome").asDouble();
+
+            resultMap.put(emp, totalIncome);
+        }
+    }
+
+    return resultMap;
+}
